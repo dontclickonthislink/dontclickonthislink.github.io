@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(:</title>
+    <style>
+        body {
+            font-family: monospace;
+            min-height: 100vh;
+            background-color: #222;
+            color: #ccc;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start; 
+            flex-direction: column; 
+        }
+
+        #text {
+            white-space: pre-wrap; 
+            margin: 0;
+            padding: 20px;
+            letter-spacing: .1em;
+            text-align: left;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+
+    </style>
+</head>
+<body>
+    <pre id="text"></pre>
+    <script>
+        const textElement = document.getElementById('text');
+        const lines = [
+            "You find yourself in an odd place...\n\nPress anything to continue...",
+            "Hey there, this is Vlad. You probably ended up here through the bot I've made for emerald. Not everyone clicks with everyone, thus It's quite a challenge to find the right person, in the right place, at the right time. That's the reason I've set this up, hoping that person would eventually run into it and we'd get connected.\n\nPress anything to continue...",
+            "I value time, so I'll let you know me first. After this, it's your choice whether you want to continue doing what you were doing before, or if you'd like to get to know me better. But let's be real, since you're already here you're probably gonna read this (:\n\nPress anything to continue...",
+            "I won't bore you out by talking about my whole existence, so let's kick things off with a little introduction, shall we?\n\nPress anything to continue...",
+            "- I'm Eastern European\n- Currently an engineer, not so long ago used to be a game dev\n- Not a gamer, but it seems like I love games\n- Many would call me weird ahaha. That's relative though, because everyone is weird for someone\n- I'm really open, so please be as open as you want with me\n- My priority is serving my nation, but it's the only thing I'd prefer not to talk about too much\n- Into politics, philosophy, psychology, war, history.. all the boring stuff!\n- If you want to know me, be ready to hear some controversial stuff\n- Sometimes I cook, favorite food is pancakes, symbolically\n- I always pet random dogs, and I have a pet rock\n\nPress anything to continue...",
+            "It would be quite silly to put a picture of me here. While I could do a short physical description, I'll maybe let you find that out yourself.\n\nPress anything to continue...",
+            "My discord username is 7276561. Or if you don't have that, my instagram is vladd_loves_pancakes.\n\nPress anything to continue...",
+            "I last edited this on: 07/03/2024.\n~Thanks for stopping by. Help yourself. 🥞\n\n",
+            "...\n\n",
+            "......\n\n",
+            "There's nothing to see here."
+        ];
+
+
+        let lineIndex = 0;
+        let charIndex = 0;
+        let isTyping = false;
+        let shouldAutoScroll = true; 
+
+        function updateScrollBar() {
+            if (shouldAutoScroll) {
+                textElement.scrollTop = textElement.scrollHeight;
+            }
+        }
+
+        textElement.addEventListener('scroll', function() {
+            shouldAutoScroll = (textElement.scrollTop + textElement.clientHeight === textElement.scrollHeight);
+        });
+
+        function typeLine() {
+            if (lineIndex < lines.length) {
+                if (charIndex < lines[lineIndex].length) {
+                    textElement.textContent += lines[lineIndex][charIndex];
+                    charIndex++;
+                    setTimeout(typeLine, 20); 
+                    isTyping = true;
+                    updateScrollBar();
+                } else {
+                    lineIndex++;
+                    if(lineIndex > 6)
+                    {
+                        localStorage.setItem('introCache', 'true');
+                    }
+                    charIndex = 0;
+                    isTyping = false;
+                    updateScrollBar();
+                }
+            } else {
+                document.removeEventListener('click', keydownListener);
+                document.removeEventListener('keydown', keydownListener);
+            }
+        }
+
+        function keydownListener() {
+            if(!isTyping)
+            {
+              typeLine();
+              removeContinue(); 
+            }
+        }
+
+        function removeContinue() {
+            textElement.textContent = textElement.textContent.replace(/Press anything to continue.../g, '');
+        }
+        const cacheFlag = localStorage.getItem('introCache');
+        if (cacheFlag === 'true') {
+            lines[0] = "Why did you come back? Here are my socials: 7276561 on discord and vladd_loves_pancakes on instagram.\n\n";
+        }
+        document.addEventListener('keydown', keydownListener);
+        document.addEventListener('click', keydownListener); 
+        window.onload = function() {
+            keydownListener();
+        };
+        
+    </script>
+</body>
+</html>
