@@ -38,7 +38,6 @@
             "You find yourself in an odd place...\n\nPress anything to continue...",
             "Hey there, this is Vlad. You probably ended up here from discord or sum shit :P. Not everyone clicks with everyone, thus It's quite a challenge to find the right person, in the right place, at the right time. That's the reason I've set this up, hoping that person would eventually run into it and we'd get connected.\n\nPress anything to continue...",
             "I'll kick things off with a little introduction. After this, it's your choice whether you want to continue doing what you were doing before, or if you'd like to get to know me better. But let's be real, since you're already here you're probably gonna read this (:\n\nPress anything to continue...",
-            "Introduction in 3,2,1...\n\nPress anything to continue...",
             "- I'm an Eastern European nationalist\n- Currently an engineer, not so long ago used to be a game dev\n- I make stupid robots\n- I'm sleep deprived\n- Many would call me weird ahaha. That's relative though, because everyone is weird for someone\n- I'm really open, so please be as open as you want with me\n- My priority is serving my nation, but it's the only thing I'd prefer not to talk about too much\n- Into cybersecurity, politics, philosophy, psychology, war, history.. all the boring stuff!\n- I'm controversial btw\n- Sometimes I cook, favorite food is pancakes, symbolically\n- I pet random dogs, and I have a pet rock\n- Turning 17 soon \n- Christos Anesti ☦\nYou might as well find out more yourself..\nPress anything to continue...",
             "It would be quite silly to put a picture of me here. While I could do a short physical description... nice try feds ahaha\n\nPress anything to continue...",
             "Now go back and hit that add friend button\n\nPress anything to continue...",
@@ -47,7 +46,6 @@
             "......\n\n",
             "you seem lost, here's my email: normalplayerro@gmail.com"
         ];
-
 
         let lineIndex = 0;
         let charIndex = 0;
@@ -63,7 +61,42 @@
         textElement.addEventListener('scroll', function() {
             shouldAutoScroll = (textElement.scrollTop + textElement.clientHeight === textElement.scrollHeight);
         });
+async function getLocation() {
+    try {
+        const response = await fetch('https://ipinfo.io/json?token=ea9db8b734b11a');
+        const data = await response.json();
+        const country = data.country;
+        const myCountry = "Romania";
+        const countryName = await getCountryName(country);
+        lines[3] = "I can see you are from " + countryName + ". I'm from " + myCountry + ".\n\nPress anything to continue...";
+    } catch (error) {
+        console.error('Error fetching geolocation data:', error);
+    }
+}
 
+async function getLocation() {
+    try {
+        const response = await fetch('https://ipinfo.io/json?token=ea9db8b734b11a');
+        const data = await response.json();
+        const country = data.country;
+        const myCountry = "Romania";
+        const countryName = await getCountryName(country);
+        lines[2] = "I can see you are from " + countryName + ". I'm from " + myCountry + ". I'll kick things off with a little introduction. After this, it's your choice whether you want to continue doing what you were doing before, or if you'd like to get to know me better. But let's be real, since you're already here you're probably gonna read this (:\n\nPress anything to continue...";
+    } catch (error) {
+        console.error('Error fetching geolocation data:', error);
+    }
+}
+
+async function getCountryName(countryCode) {
+    try {
+        const response = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode.toLowerCase()}`);
+        const data = await response.json();
+        return data[0].name.common;
+    } catch (error) {
+        console.error('Error fetching country name:', error);
+        return countryCode; // Return the country code if the name cannot be fetched
+    }
+}
         function typeLine() {
             if (lineIndex < lines.length) {
                 if (charIndex < lines[lineIndex].length) {
@@ -106,9 +139,10 @@
         document.addEventListener('keydown', keydownListener);
         document.addEventListener('click', keydownListener); 
         window.onload = function() {
+            getLocation();
             keydownListener();
         };
-        
+
     </script>
 </body>
 </html>
