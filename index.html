@@ -61,6 +61,8 @@
         let shouldAutoScroll = true; 
         let isFullScreen = false;
         let song = false;
+        var audio = new Audio('doo.mp3');
+        
         function updateScrollBar() {
             if (shouldAutoScroll) {
                 textElement.scrollTop = textElement.scrollHeight;
@@ -119,9 +121,13 @@ async function getCountryName(countryCode) {
                     }
                     if(lineIndex == 3 && !song)
                     {
-                        var audio = new Audio('doo.mp3');
                         audio.play();
                         song = true;
+                    }
+                    if(lineIndex == 5 && song)
+                    {
+                        audio.stop();
+                        song = false;
                     }
                 } else {
                     lineIndex++;
