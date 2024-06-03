@@ -48,6 +48,7 @@
             "It would be quite silly to put a picture of me here. Here's a short physical description... Nice try feds. \n\nPress anything to continue...",
             "Now go back and hit that add friend button\n\nPress anything to continue...",
             "I last edited this on 2/07/2024 at 01:07 (GMT+3).\n~Thanks for stopping by. Help yourself. 🥞\n\n",
+            "You have no new messages.",
             "...\n\n",
             "......\n\n",
             "You seem lost, here's my email: normalplayerro@gmail.com"
@@ -103,6 +104,15 @@ async function getCountryName(countryCode) {
         return countryCode; // Return the country code if the name cannot be fetched
     }
 }
+        function exitFullscreen() {
+  if(document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if(document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if(document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+        }
         function typeLine() {
             if (lineIndex < lines.length) {
                 if (charIndex < lines[lineIndex].length) {
@@ -111,6 +121,9 @@ async function getCountryName(countryCode) {
                     setTimeout(typeLine, 20); 
                     isTyping = true;
                     updateScrollBar();
+                    if(lineIndex == 7){
+                        exitFullscreen()
+                    }
                 } else {
                     lineIndex++;
                     if(lineIndex > 6)
