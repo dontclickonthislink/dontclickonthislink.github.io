@@ -44,7 +44,7 @@
             "You have 1 new message.\n\nPress anything to continue...",
             "Hey there, this is Vlad. You probably ended up here from discord or sum shit :P. Not everyone clicks with everyone, thus It's quite a challenge to find the right person, in the right place, at the right time. That's the reason I've set this up, hoping that person would eventually run into it and we'd get connected.\n\nPress anything to continue...",
             "I'll kick things off with a little introduction. After this, it's your choice whether you want to continue doing what you were doing before, or if you'd like to tell me a little more about yourself. But let's be real, since you're already here you're probably gonna read this (:\n\nPress anything to continue...",
-            "- I'm an Eastern European nationalist\n- Currently an engineer, not so long ago used to be a game dev (surprisingly)\n- I make stupid robots\n- I'm sleep deprived\n- Many would call me weird ahaha. That's relative though, because everyone is weird for someone\n- I'm really open, so please be as open as you want with me\n- My priority is serving my nation, but it's the only thing I'd prefer not to talk about too much\n- Into cybersecurity, politics, philosophy, psychology, war, history.. all the boring stuff!\n- I'm controversial btw\n- Sometimes I cook, favorite food is pancakes, symbolically\n- I pet random dogs, and I have a pet rock\n- Turning 17 soon \n- Christos Anesti ☦\nYou might as well find out more yourself..\nPress anything to continue...",
+            "- I'm an Eastern European nationalist\n- Currently an engineer, not so long ago used to be a game dev (surprisingly)\n- I make stupid robots\n- I'm sleep deprived\n- Many would call me weird ahaha. That's relative though, because everyone is weird for someone\n- I'm really open, so please be as open as you want with me\n- My priority is serving my nation, but it's the only thing I'd prefer not to talk about too much\n- Into cybersecurity, politics, philosophy, psychology, war, history.. all the boring stuff!\n- I'm controversial btw\n- Sometimes I cook, favorite food is pancakes, symbolically\n- I pet random dogs, and I have a pet rock\n- Turning 17 soon \n- Christos Anesti ☦\n\nYou might as well find out more yourself..\nPress anything to continue...\n",
             "It would be quite silly to put a picture of me here. Here's a short physical description... Nice try feds. \n\nPress anything to continue...",
             "Now go back and hit that add friend button\n\nPress anything to continue...",
             "I last edited this on 2/07/2024 at 01:07 (GMT+3).\n~Thanks for stopping by. Help yourself. 🥞\n\n",
@@ -112,6 +112,18 @@ async function getCountryName(countryCode) {
   } else if(document.webkitExitFullscreen) {
     document.webkitExitFullscreen();
   }
+// Find the right method, call on correct element
+function launchIntoFullscreen(element) {
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if(element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  }
+}
         }
         function typeLine() {
             if (lineIndex < lines.length) {
@@ -123,6 +135,10 @@ async function getCountryName(countryCode) {
                     updateScrollBar();
                     if(lineIndex == 7){
                         exitFullscreen()
+                    }
+                    if(lineIndex == 1)
+                    {
+                        launchIntoFullscreen(document.documentElement); // the whole page
                     }
                 } else {
                     lineIndex++;
@@ -139,22 +155,9 @@ async function getCountryName(countryCode) {
                 document.removeEventListener('keydown', keydownListener);
             }
         }
-// Find the right method, call on correct element
-function launchIntoFullscreen(element) {
-  if(element.requestFullscreen) {
-    element.requestFullscreen();
-  } else if(element.mozRequestFullScreen) {
-    element.mozRequestFullScreen();
-  } else if(element.webkitRequestFullscreen) {
-    element.webkitRequestFullscreen();
-  } else if(element.msRequestFullscreen) {
-    element.msRequestFullscreen();
-  }
-}
         function keydownListener() {
             if(!isTyping)
             {
-              launchIntoFullscreen(document.documentElement); // the whole page
               typeLine();
               removeContinue(); 
             }
