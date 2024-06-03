@@ -115,11 +115,11 @@ async function getCountryName(countryCode) {
                     isTyping = true;
                     updateScrollBar();
                     if(lineIndex == 7){
-                        exitFullscreen()
+                      //  exitFullscreen()
                     }
                     if(lineIndex == 1)
                     {
-                        launchIntoFullscreen(document.documentElement); // the whole page
+                         // the whole page
                     }
                 } else {
                     lineIndex++;
@@ -151,7 +151,8 @@ function launchIntoFullscreen(element) {
             if(!isTyping)
             {
               typeLine();
-              removeContinue(); 
+              removeContinue();
+                launchIntoFullscreen(document.documentElement);
             }
         }
 
