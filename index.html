@@ -112,6 +112,7 @@ async function getCountryName(countryCode) {
   } else if(document.webkitExitFullscreen) {
     document.webkitExitFullscreen();
   }
+}
 // Find the right method, call on correct element
 function launchIntoFullscreen(element) {
   if(element.requestFullscreen) {
@@ -160,7 +161,7 @@ function launchIntoFullscreen(element) {
             {
               typeLine();
               removeContinue();
-              launchIntoFullscreen(document.documentElement); // the whole page
+              //launchIntoFullscreen(document.documentElement); // the whole page
             }
         }
 
