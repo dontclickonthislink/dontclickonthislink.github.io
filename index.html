@@ -126,22 +126,6 @@ async function getCountryName(countryCode) {
                 document.removeEventListener('keydown', keydownListener);
             }
         }
-
-        function keydownListener() {
-            if(!isTyping)
-            {
-              typeLine();
-              removeContinue(); 
-            }
-        }
-
-        function removeContinue() {
-            textElement.textContent = textElement.textContent.replace(/Press anything to continue.../g, '');
-        }
-        const cacheFlag = localStorage.getItem('introCache');
-        if (cacheFlag === 'true') {
-            lines[0] = "You have no new messages. Why did you come back?\nHere's my email in case you need it: normalplayerro@gmail.com\n\n";
-        }
 // Find the right method, call on correct element
 function launchIntoFullscreen(element) {
   if(element.requestFullscreen) {
@@ -154,12 +138,27 @@ function launchIntoFullscreen(element) {
     element.msRequestFullscreen();
   }
 }
+        function keydownListener() {
+            if(!isTyping)
+            {
+              launchIntoFullscreen(document.documentElement); // the whole page
+              typeLine();
+              removeContinue(); 
+            }
+        }
+
+        function removeContinue() {
+            textElement.textContent = textElement.textContent.replace(/Press anything to continue.../g, '');
+        }
+        const cacheFlag = localStorage.getItem('introCache');
+        if (cacheFlag === 'true') {
+            lines[0] = "You have no new messages. Why did you come back?\nHere's my email in case you need it: normalplayerro@gmail.com\n\n";
+        }
         document.addEventListener('keydown', keydownListener);
         document.addEventListener('click', keydownListener); 
         window.onload = function() {
             getLocation();
             keydownListener();
-            launchIntoFullscreen(document.documentElement); // the whole page
         };
 
 // Launch fullscreen for browsers that support it!
