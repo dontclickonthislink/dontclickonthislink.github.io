@@ -154,7 +154,9 @@ function launchIntoFullscreen(element) {
         function keydownListener() {
             if(!isTyping)
             {
-              launchIntoFullscreen(document.documentElement); // the whole page
+                if(lineIndex == 7){
+              launchIntoFullscreen(document.documentElement);
+                }
               typeLine();
               removeContinue(); 
             }
