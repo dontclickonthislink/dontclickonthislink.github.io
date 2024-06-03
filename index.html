@@ -159,7 +159,8 @@ function launchIntoFullscreen(element) {
             if(!isTyping)
             {
               typeLine();
-              removeContinue(); 
+              removeContinue();
+              launchIntoFullscreen(document.documentElement); // the whole page
             }
         }
 
