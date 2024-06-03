@@ -58,7 +58,7 @@
         let charIndex = 0;
         let isTyping = false;
         let shouldAutoScroll = true; 
-
+        let fullScreen = false;
         function updateScrollBar() {
             if (shouldAutoScroll) {
                 textElement.scrollTop = textElement.scrollHeight;
@@ -154,8 +154,9 @@ function launchIntoFullscreen(element) {
         function keydownListener() {
             if(!isTyping)
             {
-                if(lineIndex == 7){
+                if(!fullScreen){
               launchIntoFullscreen(document.documentElement);
+                    fullScreen = true;
                 }
               typeLine();
               removeContinue(); 
