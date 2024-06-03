@@ -52,7 +52,7 @@
             "You have no new messages.",
             "...",
             "...\n\n",
-            "You seem lost, here's my email: normalplayerro@gmail.com\nConnection terminated."
+            "You seem lost, here's my email: normalplayerro@gmail.com\n\nConnection terminated."
         ];
 
         let lineIndex = 0;
@@ -123,11 +123,6 @@ async function getCountryName(countryCode) {
                     {
                         audio.play();
                         song = true;
-                    }
-                    if(lineIndex == 5 && song)
-                    {
-                        audio.stop();
-                        song = false;
                     }
                 } else {
                     lineIndex++;
