@@ -104,15 +104,6 @@ async function getCountryName(countryCode) {
         return countryCode; // Return the country code if the name cannot be fetched
     }
 }
-        function exitFullscreen() {
-  if(document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if(document.mozCancelFullScreen) {
-    document.mozCancelFullScreen();
-  } else if(document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-  }
-}
 // Find the right method, call on correct element
 function launchIntoFullscreen(element) {
   if(element.requestFullscreen) {
@@ -135,7 +126,7 @@ function launchIntoFullscreen(element) {
                     isTyping = true;
                     updateScrollBar();
                     if(lineIndex == 7){
-                        exitFullscreen()
+                        //exitFullscreen()
                     }
                     if(lineIndex == 0)
                     {
