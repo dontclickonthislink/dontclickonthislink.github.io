@@ -112,6 +112,10 @@ async function getCountryName(countryCode) {
                     if(lineIndex == 7){
                         exitFullscreen()
                     }
+                    if(lineIndex == 2)
+                    {
+                                      isFullScreen = true;
+                    }
                 } else {
                     lineIndex++;
                     if(lineIndex > 6)
@@ -144,8 +148,6 @@ function launchIntoFullscreen(element) {
             {
                 if(!isFullScreen){
               launchIntoFullscreen(document.documentElement);
-              isFullScreen = true;
-
                 }
               typeLine();
               removeContinue(); 
