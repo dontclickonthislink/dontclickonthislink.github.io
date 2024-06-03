@@ -142,27 +142,27 @@ async function getCountryName(countryCode) {
         if (cacheFlag === 'true') {
             lines[0] = "Why did you come back? Here's my email in case you need it: normalplayerro@gmail.com\n\n";
         }
+// Find the right method, call on correct element
+function launchIntoFullscreen(element) {
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if(element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  }
+}
         document.addEventListener('keydown', keydownListener);
         document.addEventListener('click', keydownListener); 
         window.onload = function() {
             getLocation();
             keydownListener();
+            launchIntoFullscreen(document.documentElement); // the whole page
         };
-        document.addEventListener("DOMContentLoaded", function() {
-            function goFullscreen() {
-                if (document.documentElement.requestFullscreen) {
-                    document.documentElement.requestFullscreen();
-                } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-                    document.documentElement.mozRequestFullScreen();
-                } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
-                    document.documentElement.webkitRequestFullscreen();
-                } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-                    document.documentElement.msRequestFullscreen();
-                }
-            }
 
-            goFullscreen();
-        });
+// Launch fullscreen for browsers that support it!
         </script>
 </body>
 </html>
