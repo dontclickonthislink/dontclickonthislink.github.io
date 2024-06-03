@@ -92,7 +92,7 @@ async function getLocation() {
         const country = data.country;
         const myCountry = "Romania";
         const countryName = await getCountryName(country);
-        lines[2] = "I'll kick things off with a little introduction. I can see you are living in " + countryName + ". I'm from " + myCountry + ". After this, it's your choice whether you want to continue doing what you were doing before, or if you'd like to tell me a little more about yourself. But let's be real, since you're already here you're probably gonna read this (:\n\nPress anything to continue...";
+        lines[3] = "I can see you are from " + countryName + ". I'm from " + myCountry + ".\n\nPress anything to continue...";
     } catch (error) {
         console.error('Error fetching geolocation data:', error);
     }
