@@ -29,7 +29,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 300px;
-            height: 400px;
+            height: 200px;
             display: none; /* Initially hidden */
             border: 2px solid #ccc;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -94,7 +94,7 @@ async function getLocation() {
         const data = await response.json();
         const country = data.country;
         const countryName = await getCountryName(country);
-        lines[4] = "Who am I? I could be no one. Or everyone. The person walking behind you, even when the street is empty. I could be the presence you feel at night, creeping between the enclosed walls of your room in " + countryName + ". Waiting. Waiting. (:\n\nPress anything to continue...";
+        lines[4] = "Who am I? I could be no one. Or everyone. The person walking behind you, even when the street is empty. I could be the presence you feel at night, creeping between the enclosed walls of your room in " + countryName + ". Waiting. Waiting.\n\nPress anything to continue...";
     } catch (error) {
         console.error('Error fetching geolocation data:', error);
     }
