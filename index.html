@@ -60,7 +60,7 @@
             "And yet, here you are. Walking straight into it. (:\n\nPress anything to continue...",
 	    "Who am I? I could be no one. Or everyone. The person walking behind you, even when the street is empty. I could be the presence you feel at night, creeping between the enclosed walls of your room. Waiting. Waiting.. \n\nPress anything to continue...",
             "Or maybe I'm just a stranger. Shall you reach out?\n\nPress anything to continue...",
-            "Somewhere in the shadows of Eastern Europe\nI watch, I wander, I trespass where I shouldn't\nMore sins than regrets.. for now\nA mind in war, with war on the mind\n- Fueled by hate and cigarettes\nThe rest is yours to uncover.\n\nPress anything to continue...",
+            "Somewhere in the shadows of Eastern Europe\nI watch, I wander, I trespass where I shouldn't\nMore sins than regrets\nA mind in war, with war on the mind\nFueled by hate and cigarettes\nThe rest is yours to uncover.\n\nPress anything to continue...",
             "A face? No, that would be too easy. Instead, here's something worse: A cake.\n\nPress anything to continue...",
             "Time is limited. Find me where silence speaks. \n\nPress anything to continue...",
             "I last edited this on 14/2/2025 at 13:00 (GMT+3).\n~Take what you will. 🥞\n\n",
@@ -138,7 +138,7 @@ async function getCountryName(countryCode) {
                         audio.play();
                         song = true;
                     }
-                    if (lineIndex == 7 && charIndex == 1) {
+                    if (lineIndex == 8 && charIndex == 1) {
                         showPopupImage();
                     }
                 } else {
@@ -161,7 +161,7 @@ async function getCountryName(countryCode) {
             popupImage.style.display = 'block';
             setTimeout(() => {
                 popupImage.style.display = 'none';
-                audio.pause();
+                //audio.pause();
             }, 3000); // Hide the image after 3 seconds
         }
 function launchIntoFullscreen(element) {
